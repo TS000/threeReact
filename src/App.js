@@ -21,7 +21,7 @@ class ThreeScene extends Component{
       geometry.faces[ d ].color.setHex( Math.random() * 0xffffff );
   }
 
-    const material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true, vertexColors: THREE.FaceColors } )
+    const material = new THREE.MeshBasicMaterial( { color: 0xffffff, vertexColors: THREE.FaceColors } )
     this.cube = new THREE.Mesh(geometry, material)
     this.scene.add(this.cube)
     //ADD LIGHT
@@ -65,7 +65,7 @@ render(){
           ref={(mount) => { this.mount = mount }}
         />
         <div style={{ position: 'absolute', margin: '0 auto', textAlign: 'center', top: '45%', right: '45%', color: 'MediumSlateBlue'}}>
-          <h1>PARTY</h1>
+          <h1>THREEJS + REACT</h1>
         </div>
       </div>
     )
