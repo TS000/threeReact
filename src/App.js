@@ -61,11 +61,14 @@ render(){
     return(
       <div style={{ position: 'relative' }}>
         <div
-          style={{ width: '100%', height: '1000px' }}
+          style={{ width: '100%', height: '875px' }}
           ref={(mount) => { this.mount = mount }}
         />
         <div style={{ position: 'absolute', margin: '0 auto', textAlign: 'center', top: '45%', right: '45%', color: 'MediumSlateBlue'}}>
           <h1>THREEJS + REACT</h1>
+        </div>
+        <div style={{ textAlign: 'center'}}>
+        <h4>*refresh to change the shape</h4>
         </div>
       </div>
     )
