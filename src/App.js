@@ -1,21 +1,18 @@
-import React, { Component } from 'react';
-import * as THREE from 'three';
+import React, { Component } from 'react'
+import * as THREE from 'three'
 
-class ThreeScene extends Component{
+class ThreeScene extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-    this.handleSubmit = this.handleSubmit.bind(this);
+    super(props)
+    this.state = {}
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.theCanvas()
   }
 
-  theCanvas(){
-
+  theCanvas() {
     const width = this.mount.clientWidth
     const height = this.mount.clientHeight
 
@@ -23,7 +20,12 @@ class ThreeScene extends Component{
     this.scene = new THREE.Scene()
 
     //ADD CAMERA
-    this.camera = new THREE.PerspectiveCamera( 30, window.innerWidth/window.innerHeight, 0.1, 1000 )
+    this.camera = new THREE.PerspectiveCamera(
+      30,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    )
     this.camera.position.z = 100
 
     //ADD RENDERER
@@ -33,78 +35,109 @@ class ThreeScene extends Component{
     this.mount.appendChild(this.renderer.domElement)
 
     //ADD CUBE
-    const geometry = new THREE.BoxGeometry( 20, 20, 20)
-    for ( var d = 0; d < geometry.faces.length; d ++ ) {
-      geometry.faces[ d ].color.setHex( Math.random() * 0xffffff );
-  }
-    const material = new THREE.MeshNormalMaterial( { color: 0xffffff, vertexColors: THREE.FaceColors } )
+    const geometry = new THREE.BoxGeometry(20, 20, 20)
+    for (var d = 0; d < geometry.faces.length; d++) {
+      geometry.faces[d].color.setHex(Math.random() * 0xffffff)
+    }
+    const material = new THREE.MeshNormalMaterial({
+      color: 0xffffff,
+      vertexColors: THREE.FaceColors
+    })
     this.cube = new THREE.Mesh(geometry, material)
     this.scene.add(this.cube)
-   
 
     //ADD LIGHT
-    this.light = new THREE.PointLight(0xFFF00)
-    this.light.position.set(10,0, 25)
+    this.light = new THREE.PointLight(0xfff00)
+    this.light.position.set(10, 0, 25)
     this.scene.add(this.light)
 
-    for (var i = 0, l = geometry.vertices.length; i<l; i++) {
-      geometry.vertices[i].x += -10 + Math.random()*20;
-      geometry.vertices[i].y += -10 + Math.random()*20;
+    for (var i = 0, l = geometry.vertices.length; i < l; i++) {
+      geometry.vertices[i].x += -10 + Math.random() * 20
+      geometry.vertices[i].y += -10 + Math.random() * 20
     }
 
     //ADD WIRES
-    const wireframe = new THREE.WireframeGeometry( geometry );
-    this.line = new THREE.LineSegments( wireframe );
-    this.line.material.depthTest = false;
-    this.line.material.opacity = 1;
-    this.line.material.transparent = true;
+    const wireframe = new THREE.WireframeGeometry(geometry)
+    this.line = new THREE.LineSegments(wireframe)
+    this.line.material.depthTest = false
+    this.line.material.opacity = 1
+    this.line.material.transparent = true
     this.scene.add(this.line)
 
     this.start()
-  
   }
-componentWillUnmount(){
+  componentWillUnmount() {
     this.stop()
     this.mount.removeChild(this.renderer.domElement)
   }
 
-start = () => {
+  start = () => {
     if (!this.frameId) {
       this.frameId = requestAnimationFrame(this.animate)
     }
   }
-stop = () => {
+  stop = () => {
     cancelAnimationFrame(this.frameId)
   }
-animate = () => {
-   this.line.rotation.x += 0.01
-   this.line.rotation.y += 0.01
-   this.cube.rotation.x += 0.01
-   this.cube.rotation.y += 0.01
-   this.renderScene()
-   this.frameId = window.requestAnimationFrame(this.animate)
- }
-renderScene = () => {
-  this.renderer.render(this.scene, this.camera)
-}
-
-handleSubmit= () => {
-    this.theCanvas();
+  animate = () => {
+    this.line.rotation.x += 0.02
+    this.line.rotation.y += 0.02
+    this.cube.rotation.x += 0.01
+    this.cube.rotation.y += 0.01
+    this.renderScene()
+    this.frameId = window.requestAnimationFrame(this.animate)
+  }
+  renderScene = () => {
+    this.renderer.render(this.scene, this.camera)
   }
 
-render(){
-    return(
-      <div onClick={this.handleSubmit} style={{ position: 'relative' }}>
+  handleSubmit = () => {
+    this.theCanvas()
+  }
+
+  render() {
+    return (
+      <div style={{ position: 'relative' }}>
         <div
-        key="1"
+          key="1"
           style={{ width: '100%', height: '875px' }}
-          ref={(mount) => { this.mount = mount }}
+          ref={mount => {
+            this.mount = mount
+          }}
         />
-        <div style={{ position: 'absolute', margin: '0 auto', textAlign: 'center', top: '45%', right: '45%', color: 'MediumSlateBlue'}}>
-         
+        <div
+          style={{
+            position: 'absolute',
+            margin: '0 auto',
+            textAlign: 'center',
+            top: '45%',
+            right: '45%',
+            color: 'MediumSlateBlue'
+          }}
+        />
+        <div
+          style={{
+            textAlign: 'center',
+            position: 'absolute',
+            left: '15%',
+            top: '45%',
+            color: 'papayawhip',
+            fontSize: '10px'
+          }}
+        >
+          Deep Sleep
         </div>
-        <div style={{ textAlign: 'center'}}>
-        
+        <div
+          style={{
+            textAlign: 'center',
+            position: 'absolute',
+            right: '15%',
+            top: '45%',
+            color: 'papayawhip',
+            fontSize: '10px'
+          }}
+        >
+          Music For Dreams
         </div>
       </div>
     )
