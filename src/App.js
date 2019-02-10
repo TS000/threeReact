@@ -80,10 +80,10 @@ class ThreeScene extends Component {
     cancelAnimationFrame(this.frameId)
   }
   animate = () => {
-    this.line.rotation.x += 0.02
-    this.line.rotation.y += 0.02
-    this.cube.rotation.x += 0.01
-    this.cube.rotation.y += 0.01
+    this.line.rotation.x += 0.002
+    this.line.rotation.y += 0.002
+    this.cube.rotation.x += 0.001
+    this.cube.rotation.y += 0.001
     this.renderScene()
     this.frameId = window.requestAnimationFrame(this.animate)
   }
