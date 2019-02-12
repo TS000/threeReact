@@ -1,146 +1,87 @@
 import React, { Component } from 'react'
-import * as THREE from 'three'
+import { createGlobalStyle } from 'styled-components'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Header from './components/Header'
+import Home from './layouts/Home'
 
-class ThreeScene extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  componentDidMount() {
-    this.theCanvas()
-  }
-
-  theCanvas() {
-    const width = this.mount.clientWidth
-    const height = this.mount.clientHeight
-
-    //ADD SCENE
-    this.scene = new THREE.Scene()
-
-    //ADD CAMERA
-    this.camera = new THREE.PerspectiveCamera(
-      30,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    )
-    this.camera.position.z = 100
-
-    //ADD RENDERER
-    this.renderer = new THREE.WebGLRenderer({ antialias: true })
-    this.renderer.setClearColor('#252A31')
-    this.renderer.setSize(width, height)
-    this.mount.appendChild(this.renderer.domElement)
-
-    //ADD CUBE
-    const geometry = new THREE.BoxGeometry(20, 20, 20)
-    for (var d = 0; d < geometry.faces.length; d++) {
-      geometry.faces[d].color.setHex(Math.random() * 0xffffff)
+const GlobalStyle = createGlobalStyle`
+  html, body {
+    height: 100%
+    width: 100%
+    padding: 0
+    background: #252A31
+    font-size: 16px
+    font-family: 
+      -apple-system,
+      BlinkMacSystemFont,
+      Segoe UI,
+      Roboto,
+      Oxygen-Sans,
+      Ubuntu,
+      Cantarell,
+      Helvetica Neue,
+      sans-serif
+      body {
+        margin: 0
+        padding: 0
+      }
+    @media (min-width: 320px) {
+      font-size: calc(4px + 6 * ((100vw - 320px) / 680));
     }
-    const material = new THREE.MeshNormalMaterial({
-      color: 0xffffff,
-      vertexColors: THREE.FaceColors
-    })
-    this.cube = new THREE.Mesh(geometry, material)
-    this.scene.add(this.cube)
-
-    //ADD LIGHT
-    this.light = new THREE.PointLight(0xfff00)
-    this.light.position.set(10, 0, 25)
-    this.scene.add(this.light)
-
-    for (var i = 0, l = geometry.vertices.length; i < l; i++) {
-      geometry.vertices[i].x += -10 + Math.random() * 20
-      geometry.vertices[i].y += -10 + Math.random() * 20
+    @media screen and (min-width: 480px) {
+      font-size: 9px;
     }
-
-    //ADD WIRES
-    const wireframe = new THREE.WireframeGeometry(geometry)
-    this.line = new THREE.LineSegments(wireframe)
-    this.line.material.depthTest = false
-    this.line.material.opacity = 1
-    this.line.material.transparent = true
-    this.scene.add(this.line)
-
-    this.start()
-  }
-  componentWillUnmount() {
-    this.stop()
-    this.mount.removeChild(this.renderer.domElement)
-  }
-
-  start = () => {
-    if (!this.frameId) {
-      this.frameId = requestAnimationFrame(this.animate)
+    @media screen and (min-width: 700px) {
+      font-size: 9px;
+    }
+    @media screen and (min-width: 1000px) {
+      font-size: 9px;
+    }
+    @media screen and (min-width: 1400px) {
+      font-size: 14px;
     }
   }
-  stop = () => {
-    cancelAnimationFrame(this.frameId)
-  }
-  animate = () => {
-    this.line.rotation.x += 0.002
-    this.line.rotation.y += 0.002
-    this.cube.rotation.x += 0.001
-    this.cube.rotation.y += 0.001
-    this.renderScene()
-    this.frameId = window.requestAnimationFrame(this.animate)
-  }
-  renderScene = () => {
-    this.renderer.render(this.scene, this.camera)
-  }
+`
 
-  handleSubmit = () => {
-    this.theCanvas()
-  }
+console.log(
+  `%c
+                   P▄█▀▄S
+                 E▄██▀▀▀▀▄L
+               E▄███▀▀▀▀▀▀▀▄E
+             D▄████▀▀▀▀▀▀▀▀▀▀▄E
+            ▄█████▀▀▀▀▀▀▀▀▀▀▀▀█▄P
 
+              `,
+  'font-family:monospace'
+)
+
+export default class App extends Component {
   render() {
     return (
-      <div style={{ position: 'relative' }}>
-        <div
-          key="1"
-          style={{ width: '100%', height: '875px' }}
-          ref={mount => {
-            this.mount = mount
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            margin: '0 auto',
-            textAlign: 'center',
-            top: '45%',
-            right: '45%',
-            color: 'MediumSlateBlue'
-          }}
-        />
-        <div
-          style={{
-            textAlign: 'center',
-            position: 'absolute',
-            left: '15%',
-            top: '45%',
-            color: 'papayawhip',
-            fontSize: '10px'
-          }}
-        >
-          Deep Sleep
-        </div>
-        <div
-          style={{
-            textAlign: 'center',
-            position: 'absolute',
-            right: '15%',
-            top: '45%',
-            color: 'papayawhip',
-            fontSize: '10px'
-          }}
-        >
-          Music For Dreams
-        </div>
-      </div>
+      <React.Fragment>
+      <GlobalStyle />
+          <Router>
+            <div>
+            <Header />
+            <Switch>
+            <Route exact path="/" component={Home} />
+              <Route
+                path="/admin"
+                component={() =>
+                  (window.location =
+                    'https://www.youtube.com/watch?time_continue=116&v=dJRsWJqDjFE')
+                }
+               />
+              <Route
+                path="/wp-admin"
+                component={() =>
+                  (window.location = 'https://youtu.be/djV11Xbc914?t=1m27s')
+                 }
+              />
+             </Switch>
+             </div>
+          </Router>
+          </React.Fragment>
     )
   }
 }
-export default ThreeScene
