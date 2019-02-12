@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%
     width: 100%
     padding: 0
-    background: #252A31
+    background: #000000
     font-size: 16px
     font-family: 
       -apple-system,
