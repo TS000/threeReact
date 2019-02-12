@@ -88,7 +88,7 @@ class Shape extends Component {
     cancelAnimationFrame(this.frameId)
   }
   animate = () => {
-    this.line.rotation.x += 0.002
+    this.line.rotation.x += 0.001
     this.line.rotation.y += 0.001
     this.cube.rotation.x += 0.001
     this.cube.rotation.y += 0.001
