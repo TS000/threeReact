@@ -6,8 +6,8 @@ import { push as Menu } from 'react-burger-menu'
 const styles = {
   bmBurgerButton: {
     position: 'fixed',
-    width: '36px',
-    height: '30px',
+    width: '16px',
+    height: '16px',
     left: '35px',
     top: '35px'
   },
@@ -22,7 +22,7 @@ const styles = {
     background: 'papayawhip'
   },
   bmMenu: {
-    background: '#1d2024',
+    background: 'black',
     padding: '2.5em 1.5em 0',
     fontSize: '1.15em',
     overflow: 'hidden'
