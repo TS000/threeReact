@@ -41,9 +41,9 @@ class Shape extends Component {
     const palette = random.shuffle(random.pick(palettes)).slice(0, colorCount);
 
     //ADD CUBE
-    const TILE_SIZE = 5
-    const geometry = new THREE.CylinderGeometry( 1, TILE_SIZE*3, TILE_SIZE*3, 3 )
-    const material = new THREE.MeshNormalMaterial({
+    const TILE_SIZE = 4
+    const geometry = new THREE.CylinderGeometry( 1, TILE_SIZE*4, TILE_SIZE*4, 3 )
+    const material = new THREE.MeshStandardMaterial({
       color: 0xffffff,
       vertexColors: THREE.FaceColors
     })
@@ -89,8 +89,8 @@ class Shape extends Component {
     cancelAnimationFrame(this.frameId)
   }
   animate = () => {
-    this.line.rotation.x += 0.0002
-    this.line.rotation.y += 0.0002
+    this.line.rotation.x += 0.001
+    this.line.rotation.y += 0.002
     this.cube.rotation.x += 0.001
     this.cube.rotation.y += 0.001
     this.renderScene()
