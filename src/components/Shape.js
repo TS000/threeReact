@@ -41,11 +41,9 @@ class Shape extends Component {
     const palette = random.shuffle(random.pick(palettes)).slice(0, colorCount);
 
     //ADD CUBE
-    const geometry = new THREE.BoxGeometry(20, 20, 20)
-    for (var d = 0; d < geometry.faces.length; d++) {
-      geometry.faces[d].color.setHex(palette)
-    }
-    const material = new THREE.MeshStandardMaterial({
+    const TILE_SIZE = 5
+    const geometry = new THREE.CylinderGeometry( 1, TILE_SIZE*3, TILE_SIZE*3, 3 )
+    const material = new THREE.MeshNormalMaterial({
       color: 0xffffff,
       vertexColors: THREE.FaceColors
     })
@@ -62,14 +60,17 @@ class Shape extends Component {
       geometry.vertices[i].y += -10 + Math.random() * 20
     }
 
-    this.scene.add(new THREE.AmbientLight('blue'));
+    this.scene.add(new THREE.AmbientLight(palette))
 
     //ADD WIRES
     const wireframe = new THREE.WireframeGeometry(geometry)
-    this.line = new THREE.LineSegments(wireframe)
-    this.line.material.depthTest = true
-    this.line.material.opacity = 1
-    this.line.material.transparent = true
+    const lineMaterial = new THREE.LineBasicMaterial({
+      color: 0xf8f8ff,
+      transparent: true,
+      opacity: 1,
+      depthTest: true,
+    });
+    this.line = new THREE.Line( wireframe, lineMaterial )
     this.scene.add(this.line)
 
     this.start()
@@ -88,8 +89,8 @@ class Shape extends Component {
     cancelAnimationFrame(this.frameId)
   }
   animate = () => {
-    this.line.rotation.x += 0.001
-    this.line.rotation.y += 0.001
+    this.line.rotation.x += 0.0002
+    this.line.rotation.y += 0.0002
     this.cube.rotation.x += 0.001
     this.cube.rotation.y += 0.001
     this.renderScene()
