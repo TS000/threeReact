@@ -130,8 +130,8 @@ class Shape extends Component {
             position: 'absolute',
             left: '15%',
             top: '45%',
-            color: 'papayawhip',
-            fontSize: '10px'
+            color: 'white',
+            fontSize: '12px'
           }}
         >
           Deep Sleep
@@ -142,8 +142,8 @@ class Shape extends Component {
             position: 'absolute',
             right: '15%',
             top: '45%',
-            color: 'papayawhip',
-            fontSize: '10px'
+            color: 'white',
+            fontSize: '12px'
           }}
         >
           Music For Dreams

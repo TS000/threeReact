@@ -12,14 +12,14 @@ const styles = {
     top: '35px'
   },
   bmBurgerBars: {
-    background: 'papayawhip'
+    background: 'white'
   },
   bmCrossButton: {
     height: '24px',
     width: '24px'
   },
   bmCross: {
-    background: 'papayawhip'
+    background: 'white'
   },
   bmMenu: {
     background: 'black',
@@ -50,15 +50,15 @@ const ItemWrap = Styled.div`
      text-decoration: none;
      display: block;
      padding: 1em;
-     color: papayawhip;
+     color: white;
      font-weight: 700
-     font-size: 4rem;
+     font-size: 3rem;
      transition: ease all .2s;
        &:hover {
          color: grey;
        }
         @media screen and (min-width: 1000px) {
-      font-size: 2rem;
+      font-size: 1rem;
       padding: .5rem;
     }
 `
@@ -103,9 +103,9 @@ export default class Nav extends Component {
         */}
         </ItemWrap>
         <ItemWrap>
-          {/* <NavLink onClick={() => this.closeMenu()} to='/about' activeClassName='active'>
+          <NavLink onClick={() => this.closeMenu()} to='/about' activeClassName='active'>
             <span>About</span>
-          </NavLink> */}
+          </NavLink>
         </ItemWrap>
       </Menu>
     )
