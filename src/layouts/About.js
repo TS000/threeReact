@@ -6,6 +6,9 @@ const AboutWrap = Styled.div`
   align-items: center;
   justify-content: center;
   padding: 10%;
+  @media screen and (min-width: 1000px) {
+    padding: 20%;
+  }
     h1, p{
       color: white;
     }
