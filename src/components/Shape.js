@@ -6,7 +6,7 @@ import palettes from 'nice-color-palettes';
 
 const ShapeWrap = Styled.div`
   width: 100;
-  height: 300px;
+  height: 450px;
 
   @media (min-width: 700px) {
     height: 950px;
@@ -18,6 +18,7 @@ margin: 0 auto;
 display: flex;
 justify-content: space-around;
 padding: 10px;
+position: relative;
 `
 
 const TextItem = Styled.h4`
@@ -129,7 +130,7 @@ class Shape extends Component {
 
   render() {
     return (
-      <div style={{ position: 'relative' }}>
+      <div style={{ position: 'absolute', margin: '0 auto', width: '100%' }}>
         <ShapeWrap
           key="1"
           ref={mount => {
