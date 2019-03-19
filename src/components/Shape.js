@@ -1,7 +1,30 @@
 import React, { Component } from 'react'
 import * as THREE from 'three'
-const random = require('canvas-sketch-util/random');
-const palettes = require('nice-color-palettes');
+import Styled from 'styled-components'
+import random from 'canvas-sketch-util/random';
+import palettes from 'nice-color-palettes';
+
+const ShapeWrap = Styled.div`
+  width: 100;
+  height: 300px;
+
+  @media (min-width: 700px) {
+    height: 950px;
+    }
+`
+
+const TextWrap = Styled.div`
+margin: 0 auto;
+display: flex;
+justify-content: space-around;
+padding: 10px;
+`
+
+const TextItem = Styled.h4`
+  color: white;
+  width: 100px;
+  transform: rotate(45deg);
+`
 
 class Shape extends Component {
   constructor(props) {
@@ -107,47 +130,16 @@ class Shape extends Component {
   render() {
     return (
       <div style={{ position: 'relative' }}>
-        <div
+        <ShapeWrap
           key="1"
-          style={{ width: '100%', height: '950px' }}
           ref={mount => {
             this.mount = mount
           }}
         />
-        <div
-          style={{
-            position: 'absolute',
-            margin: '0 auto',
-            textAlign: 'center',
-            top: '45%',
-            right: '45%',
-            color: 'MediumSlateBlue'
-          }}
-        />
-        <div
-          style={{
-            textAlign: 'center',
-            position: 'absolute',
-            left: '15%',
-            top: '45%',
-            color: 'white',
-            fontSize: '12px'
-          }}
-        >
-          Deep Sleep
-        </div>
-        <div
-          style={{
-            textAlign: 'center',
-            position: 'absolute',
-            right: '15%',
-            top: '45%',
-            color: 'white',
-            fontSize: '12px'
-          }}
-        >
-          Music For Dreams
-        </div>
+          <TextWrap>
+            <TextItem>Deep Sleep</TextItem>
+            <TextItem>Music For Dreams</TextItem>
+        </TextWrap>
       </div>
     )
   }

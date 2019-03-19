@@ -49,16 +49,16 @@ const ItemWrap = Styled.div`
   a {
      text-decoration: none;
      display: block;
-     padding: 1em;
+     padding: 2px;
+     margin-bottom: 15px;
      color: white;
      font-weight: 700
-     font-size: 3rem;
+     font-size: 12px;
      transition: ease all .2s;
        &:hover {
          color: grey;
        }
         @media screen and (min-width: 1000px) {
-      font-size: 1rem;
       padding: .5rem;
     }
 `
@@ -85,7 +85,7 @@ export default class Nav extends Component {
       <Menu
         isOpen={this.state.menuOpen}
         onStateChange={state => this.handleStateChange(state)}
-        width={250}
+        width={100}
         styles={styles}
       >
         <ItemWrap>

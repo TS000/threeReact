@@ -7,11 +7,12 @@ import About from './layouts/About'
 
 const GlobalStyle = createGlobalStyle`
   html, body {
+    position: relative;
     height: 100%
     width: 100%
     padding: 0
     background: #000000
-    font-size: 16px
+    font-size: 10px
     font-family: 
       -apple-system,
       BlinkMacSystemFont,
@@ -27,16 +28,7 @@ const GlobalStyle = createGlobalStyle`
         padding: 0
       }
     @media (min-width: 320px) {
-      font-size: calc(4px + 6 * ((100vw - 320px) / 680));
-    }
-    @media screen and (min-width: 480px) {
-      font-size: 9px;
-    }
-    @media screen and (min-width: 700px) {
-      font-size: 9px;
-    }
-    @media screen and (min-width: 1000px) {
-      font-size: 9px;
+    font-size: 12px;
     }
     @media screen and (min-width: 1400px) {
       font-size: 14px;
