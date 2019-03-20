@@ -4,9 +4,20 @@ import Styled from 'styled-components'
 import random from 'canvas-sketch-util/random';
 import palettes from 'nice-color-palettes';
 
+const CanvasWrap = Styled.div`
+  position: 'absolute'; 
+  margin: '0 auto'; 
+  width: '100%';
+  @media screen and (min-width: 800px) {
+    height: 800px;
+  }
+`
+
 const ShapeWrap = Styled.div`
-  width: 100;
   height: 450px;
+   @media screen and (min-width: 800px) {
+    height: 820px;
+  }
 `
 
 const TextWrap = Styled.div`
@@ -15,6 +26,10 @@ display: flex;
 justify-content: space-around;
 padding: 10px;
 position: relative;
+bottom: 100px;
+@media screen and (min-width: 800px) {
+  bottom: 400px;
+}
 `
 
 const TextItem = Styled.h4`
@@ -126,7 +141,7 @@ class Shape extends Component {
 
   render() {
     return (
-      <div style={{ position: 'absolute', margin: '0 auto', width: '100%' }}>
+      <CanvasWrap>
         <ShapeWrap
           key="1"
           ref={mount => {
@@ -137,7 +152,7 @@ class Shape extends Component {
             <TextItem>Deep Sleep</TextItem>
             <TextItem>Music For Dreams</TextItem>
         </TextWrap>
-      </div>
+      </CanvasWrap>
     )
   }
 }
