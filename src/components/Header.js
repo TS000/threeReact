@@ -53,13 +53,11 @@ const ItemWrap = Styled.div`
      margin-bottom: 15px;
      color: white;
      font-weight: 700
-     font-size: 12px;
+     font-size: 14px;
      transition: ease all .2s;
        &:hover {
          color: grey;
        }
-        @media screen and (min-width: 1000px) {
-      padding: .5rem;
     }
 `
 
@@ -90,7 +88,7 @@ export default class Nav extends Component {
       >
         <ItemWrap>
           <NavLink onClick={() => this.closeMenu()} exact to='/' activeClassName='active'>
-            <span>Home</span>
+            Home
           </NavLink>
         </ItemWrap>
         <ItemWrap>
@@ -104,7 +102,7 @@ export default class Nav extends Component {
         </ItemWrap>
         <ItemWrap>
           <NavLink onClick={() => this.closeMenu()} to='/about' activeClassName='active'>
-            <span>About</span>
+            About
           </NavLink>
         </ItemWrap>
       </Menu>

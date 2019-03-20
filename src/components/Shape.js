@@ -7,10 +7,6 @@ import palettes from 'nice-color-palettes';
 const ShapeWrap = Styled.div`
   width: 100;
   height: 450px;
-
-  @media (min-width: 700px) {
-    height: 950px;
-    }
 `
 
 const TextWrap = Styled.div`

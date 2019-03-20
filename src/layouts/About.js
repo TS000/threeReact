@@ -12,6 +12,9 @@ const AboutWrap = Styled.div`
     h1, p{
       color: white;
     }
+  p {
+    font-size: 14px;
+  }
 `
 
 export default class About extends Component {
