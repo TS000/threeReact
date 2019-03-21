@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
 import * as THREE from 'three'
-import Styled from 'styled-components'
+import Styled, { keyframes } from 'styled-components'
 import random from 'canvas-sketch-util/random';
 import palettes from 'nice-color-palettes';
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
 
 const CanvasWrap = Styled.div`
   position: 'absolute'; 
@@ -36,6 +45,7 @@ const TextItem = Styled.h4`
   color: white;
   width: 100px;
   transform: rotate(45deg);
+  animation: 15s ${fadeIn} ease-out;
 `
 
 class Shape extends Component {

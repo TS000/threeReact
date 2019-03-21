@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
-import Styled from 'styled-components'
+import Styled, { keyframes } from 'styled-components'
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
 
 const AboutWrap = Styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 15% 10% 10% 10%;
+  animation: 3s ${fadeIn} ease-out;
   @media screen and (min-width: 1000px) {
     padding: 10% 30%;
   }
