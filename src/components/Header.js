@@ -92,15 +92,6 @@ export default class Nav extends Component {
           </NavLink>
         </ItemWrap>
         <ItemWrap>
-          {/*
-          <NavLink
-            onClick={() => this.closeMenu()}
-            to="/crateless" activeClassName="active">
-            <span>Crateless</span>
-          </NavLink>
-        */}
-        </ItemWrap>
-        <ItemWrap>
           <NavLink onClick={() => this.closeMenu()} to='/about' activeClassName='active'>
             About
           </NavLink>

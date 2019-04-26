@@ -1,10 +1,16 @@
-import React, { Component } from 'react'
+import React, {
+  Component
+} from 'react'
 import * as THREE from 'three'
-import Styled, { keyframes } from 'styled-components'
-import random from 'canvas-sketch-util/random';
-import palettes from 'nice-color-palettes';
+import Styled, {
+  keyframes
+} from 'styled-components'
+import random from 'canvas-sketch-util/random'
+import palettes from 'nice-color-palettes'
+import WebMidi from 'webmidi'
 
-const fadeIn = keyframes`
+
+const fadeIn = keyframes `
   0% {
     opacity: 0;
   }
@@ -13,7 +19,7 @@ const fadeIn = keyframes`
   }
 `
 
-const CanvasWrap = Styled.div`
+const CanvasWrap = Styled.div `
   position: 'absolute'; 
   margin: '0 auto'; 
   width: '100%';
@@ -22,14 +28,14 @@ const CanvasWrap = Styled.div`
   }
 `
 
-const ShapeWrap = Styled.div`
+const ShapeWrap = Styled.div `
   height: 450px;
    @media screen and (min-width: 800px) {
     height: 820px;
   }
 `
 
-const TextWrap = Styled.div`
+const TextWrap = Styled.div `
 margin: 0 auto;
 display: flex;
 justify-content: space-around;
@@ -41,7 +47,7 @@ bottom: 100px;
 }
 `
 
-const TextItem = Styled.h4`
+const TextItem = Styled.h4 `
   color: white;
   width: 100px;
   transform: rotate(45deg);
@@ -51,15 +57,40 @@ const TextItem = Styled.h4`
 class Shape extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      note: '',
+    };
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.midiCatch = this.midiCatch.bind(this)
   }
 
   componentDidMount() {
     this.theCanvas()
+    this.midiCatch()
   }
 
+  midiCatch() {
+    
+    }
+
+
   theCanvas() {
+
+    let midiInput
+
+    WebMidi.enable(function (err) {
+    
+      if (err) {
+        console.log("WebMidi could not be enabled.", err);
+      }
+      let input = WebMidi.getInputByName("Arturia KeyStep 32")
+      midiInput = input.addListener('noteon', "all", (e) => {
+        // console.log("Received 'noteon' message (" + e.note.name + e.note.octave + ").");
+     midiInput = e.note.name
+      });
+      
+    })
+
     const width = this.mount.clientWidth
     const height = this.mount.clientHeight
 
@@ -76,7 +107,9 @@ class Shape extends Component {
     this.camera.position.z = 100
 
     //ADD RENDERER
-    this.renderer = new THREE.WebGLRenderer({ antialias: true })
+    this.renderer = new THREE.WebGLRenderer({
+      antialias: true
+    })
     this.renderer.setClearColor('#000000')
     this.renderer.setSize(width, height)
     this.mount.appendChild(this.renderer.domElement)
@@ -87,7 +120,7 @@ class Shape extends Component {
 
     //ADD CUBE
     const TILE_SIZE = 4
-    const geometry = new THREE.CylinderGeometry( 1, TILE_SIZE*4, TILE_SIZE*4, 3 )
+    const geometry = new THREE.CylinderGeometry(1, TILE_SIZE * 4, TILE_SIZE * 4, 3)
     const material = new THREE.MeshStandardMaterial({
       color: 0xffffff,
       vertexColors: THREE.FaceColors
@@ -115,7 +148,7 @@ class Shape extends Component {
       opacity: 1,
       depthTest: true,
     });
-    this.line = new THREE.Line( wireframe, lineMaterial )
+    this.line = new THREE.Line(wireframe, lineMaterial)
     this.scene.add(this.line)
 
     this.start()
@@ -150,19 +183,22 @@ class Shape extends Component {
   }
 
   render() {
-    return (
-      <CanvasWrap>
-        <ShapeWrap
-          key="1"
-          ref={mount => {
-            this.mount = mount
-          }}
-        />
-          <TextWrap>
-            <TextItem>Deep Sleep</TextItem>
-            <TextItem>Music For Dreams</TextItem>
-        </TextWrap>
-      </CanvasWrap>
+    return ( <
+      CanvasWrap >
+      <
+      ShapeWrap key = "1"
+      ref = {
+        mount => {
+          this.mount = mount
+        }
+      }
+      /> <
+      TextWrap >
+      <
+      TextItem > Deep Sleep < /TextItem> <
+      TextItem > Music For Dreams < /TextItem> <
+      /TextWrap> <
+      /CanvasWrap>
     )
   }
 }
